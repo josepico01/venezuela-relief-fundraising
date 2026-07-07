@@ -104,6 +104,31 @@ The app uses URL parameters and LocalStorage to manage different views:
 - **Admin Panel**: Access via `http://localhost:5173/` and select "System Settings & Admin".
   - *Allows database resets, CSV exports, and goal adjustments.*
 
+## 🤖 AI Co-Pilot & Prompt Architecture
+
+This project was built utilizing a Human-AI collaborative development lifecycle, using **Gemini** as a high-speed pair programmer. Rather than relying on AI for blind code generation, it was leveraged strategically to accelerate scaffolding, UI implementation, and boilerplate logic under an intense 72-hour delivery window.
+
+### 👥 System Roles & Workflow
+* **Human (Architect/Lead Engineer):** System architecture design, state management strategy, security rules config, layout UX wireframing, component composition, and local browser persistence engine.
+* **AI (Gemini - Pair Programmer):** Tailored component boilerplate generation, Tailwind utility class composition, complex logical switch-case mapping, and edge-case unit logic.
+
+### 📐 Prompt Engineering Strategies Used
+
+To ensure production-grade code, the following prompt structuring methodologies were used:
+
+1. **Role-Based System Prompts:**
+   To isolate layout logic from system architecture, the AI context was locked before generating components:
+   > *"Act as a Senior React Engineer specializing in Vite and utility-first frameworks. Write a lightweight, self-contained component using Tailwind CSS that adheres to structural layout design..."*
+
+2. **Contextual Constraints & Pseudo-coding:**
+   To build the offline-first sync fallback without bloated libraries, a strict constraint-first prompt loop was used:
+    * **The Prompt Structure:** `[Context of Firestore snapshots]` -> `[Constraint: LocalStorage fallback buffer]` -> `[Expected Output format: Functional React Hook]`.
+
+3. **Iterative Refactoring Loops:**
+   For complex logic (like managing the dynamic color shifting of the progress bar to match the Venezuelan flag), an iterative refinement strategy was used:
+    * *Step 1:* Request pure functional logic based on data thresholds.
+    * *Step 2:* Supply the resulting code back with specific edge cases: *"Refactor this to ensure that if network latency delays data sync, state transitions gracefully without component flashes."*
+
 ---
 
 **Developed with ❤️ in support of the Venezuelan community in Melbourne and in solidarity with the victims of the earthquake in my homeland, Venezuela.**
